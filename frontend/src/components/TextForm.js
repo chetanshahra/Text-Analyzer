@@ -6,13 +6,13 @@ export default function TextForm(props) {
     const [text, setText] = useState({text: '', wordCount: 0, charCount: 0, timeToRead: 0}); 
 
     function handleUpClick(){
-        let newText = text.text;
-        setText({ text: newText.toUpperCase() })
+        let newText = text;
+        setText({ text: newText.text.toUpperCase(), wordCount: text.wordCount, charCount: text.charCount, timeToRead: text.timeToRead  })
     }
 
     const handleLoClick = ()=>{ 
-        let newText = text.text;
-        setText({ text: newText.toLowerCase() })
+        let newText = text;
+        setText({ text: newText.text.toLowerCase(), wordCount: text.wordCount, charCount: text.charCount, timeToRead: text.timeToRead  })
     }
     const handleClearClick = () => {
         let newText = { text: '', wordCount: 0, charCount: 0, timeToRead: 0 };
@@ -22,7 +22,7 @@ export default function TextForm(props) {
     const handleOnChange = (event) => {
         let newText = event.target.value;
         let wordCount = (newText.length === 0 || newText[newText.length - 1] === ' ') ? newText.split(" ").length - 1 : newText.split(" ").length
-        setText({ text: newText, wordCount: wordCount,  charCount: newText.length, timeToRead: wordCount*0.005 })
+        setText({ text: newText, wordCount: wordCount,  charCount: newText.length, timeToRead: wordCount*0.008 })
     }
     const handleSave = () => {
         axios.post('/save', text)
@@ -43,7 +43,7 @@ export default function TextForm(props) {
         <div className="container"> 
             <h1 className='mb-4'>{props.heading}</h1>
             <div className="mb-3"> 
-            <textarea className="form-control" value={text.text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+            <textarea maxlength="250" className="form-control" value={text.text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
             </div>
             <button disabled={text.charCount===0} className="btn btn-dark mx-1 my-1" onClick={handleUpClick}>UPPERCASE</button>
             <button disabled={text.charCount===0} className="btn btn-dark mx-1 my-1" onClick={handleLoClick}>lowercase</button>
