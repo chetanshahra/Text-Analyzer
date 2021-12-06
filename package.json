@@ -1,0 +1,27 @@
+{
+  "name": "mern-latest-deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chetanshahra/mern-latest-deploy.git"
+  },
+  "author": "Chetan Shahra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chetanshahra/mern-latest-deploy/issues"
+  },
+  "homepage": "https://github.com/chetanshahra/mern-latest-deploy#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.14"
+  }
+}
